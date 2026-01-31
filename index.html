@@ -2,17 +2,68 @@
 <html>
 <head>
   <title>Kids Activities</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    button { margin: 5px; padding: 8px; }
+    .activity { border: 1px solid #ccc; padding: 10px; margin: 10px 0; cursor: pointer; }
+    .activity:hover { background: #f5f5f5; }
+  </style>
 </head>
 <body>
-  <h1>Kids Activities</h1>
 
-  <input type="text" placeholder="Search activities..." />
+<h1>Kids Activities</h1>
 
-  <div>
-    <button>Speech</button>
-    <button>Behaviour</button>
-  </div>
+<input id="search" type="text" placeholder="Search by name or code..." />
 
-  <p>App setup in progress…</p>
+<div>
+  <button onclick="filterCategory('ALL')">All</button>
+  <button onclick="filterCategory('SPH')">Speech</button>
+  <button onclick="filterCategory('BCH')">Behaviour</button>
+</div>
+
+<div id="activities"></div>
+
+<script>
+  let allActivities = [];
+
+  fetch('activities.json')
+    .then(res => res.json())
+    .then(data => {
+      allActivities = data;
+      renderActivities(data);
+    });
+
+  function renderActivities(list) {
+    const container = document.getElementById('activities');
+    container.innerHTML = '';
+    list.forEach(a => {
+      const div = document.createElement('div');
+      div.className = 'activity';
+      div.title = a.tooltip;
+      div.innerHTML = `<strong>${a.code}</strong> - ${a.name}`;
+      div.onclick = () => window.open(a.link, '_blank');
+      container.appendChild(div);
+    });
+  }
+
+  function filterCategory(cat) {
+    if (cat === 'ALL') {
+      renderActivities(allActivities);
+    } else {
+      renderActivities(allActivities.filter(a => a.category === cat));
+    }
+  }
+
+  document.getElementById('search').addEventListener('input', e => {
+    const q = e.target.value.toLowerCase();
+    renderActivities(
+      allActivities.filter(a =>
+        a.name.toLowerCase().includes(q) ||
+        a.code.toLowerCase().includes(q)
+      )
+    );
+  });
+</script>
+
 </body>
 </html>
