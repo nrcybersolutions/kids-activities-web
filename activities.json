@@ -1,38 +1,255 @@
 [
   {
+    "category": "Routine",
+    "timeOfDay": "Morning",
+    "code": "MOR-001",
+    "name": "Wake up & Greeting",
+    "tools": "Visual schedule card, parent prompt",
+    "howTo": "Greet with smile, stretch arms",
+    "wording": "Good morning, Rishika!",
+    "link": "",
+    "mediaType": ""
+  },
+  {
+    "category": "Routine",
+    "timeOfDay": "Morning",
+    "code": "MOR-002",
+    "name": "Morning Exercise",
+    "tools": "Yoga mat, simple music, lemon juice",
+    "howTo": "Do 2–3 stretches, jumping, clapping",
+    "wording": "Let's stretch, arms up! Have lemon juice",
+    "link": "",
+    "mediaType": ""
+  },
+  {
+    "category": "Routine",
+    "timeOfDay": "Morning",
+    "code": "MOR-003",
+    "name": "Potty Routine",
+    "tools": "Potty chart, pants easy to pull, soap, towel",
+    "howTo": "Follow 8-step chart",
+    "wording": "Use standard potty script",
+    "link": "",
+    "mediaType": ""
+  },
+  {
+    "category": "Routine",
+    "timeOfDay": "Morning",
+    "code": "MOR-004",
+    "name": "Brushing Teeth",
+    "tools": "Toothbrush, toothpaste, step stool",
+    "howTo": "Water → paste → brush → rinse",
+    "wording": "Brush teeth, up and down!",
+    "link": "",
+    "mediaType": ""
+  },
+  {
+    "category": "Routine",
+    "timeOfDay": "Morning",
+    "code": "MOR-005",
+    "name": "Washing Face / Hands / Bath",
+    "tools": "Small towel, soap",
+    "howTo": "Guide through washing and wiping",
+    "wording": "Wash hands, wipe face",
+    "link": "",
+    "mediaType": ""
+  },
+  {
+    "category": "Routine",
+    "timeOfDay": "Morning",
+    "code": "MOR-006",
+    "name": "Bath Time",
+    "tools": "Tub, towel, soap/shampoo",
+    "howTo": "Guide step by step",
+    "wording": "Wash hands, wash tummy, wash legs",
+    "link": "",
+    "mediaType": ""
+  },
+  {
+    "category": "Routine",
+    "timeOfDay": "Morning",
+    "code": "MOR-007",
+    "name": "Dressing (Morning clothes)",
+    "tools": "Prepared outfit, visual card",
+    "howTo": "Guide step by step",
+    "wording": "Shirt on, pants on, shoes on",
+    "link": "",
+    "mediaType": ""
+  },
+  {
+    "category": "Routine",
+    "timeOfDay": "Morning",
+    "code": "MOR-008",
+    "name": "Breakfast",
+    "tools": "Table setup, plate, spoon",
+    "howTo": "Encourage self-feeding",
+    "wording": "Eat with spoon, good job",
+    "link": "",
+    "mediaType": ""
+  },
+  {
+    "category": "Routine",
+    "timeOfDay": "Morning",
+    "code": "MOR-009",
+    "name": "Daycare Prep (Bag & Shoes)",
+    "tools": "Daycare bag, shoes, jacket",
+    "howTo": "Guide her to pick bag and wear shoes",
+    "wording": "Take your bag, shoes on",
+    "link": "",
+    "mediaType": ""
+  },
+  {
+    "category": "Routine",
+    "timeOfDay": "Morning",
+    "code": "MOR-010",
+    "name": "Daycare Drop-off",
+    "tools": "Car seat, bag",
+    "howTo": "Walk her step by step to car",
+    "wording": "We are going to daycare",
+    "link": "",
+    "mediaType": ""
+  },
+  {
+    "category": "Routine",
+    "timeOfDay": "Afternoon",
+    "code": "AFT-001",
+    "name": "Lunch (at home)",
+    "tools": "Plate, spoon, cup",
+    "howTo": "Encourage self-feeding",
+    "wording": "Take bite, chew, good job",
+    "link": "",
+    "mediaType": ""
+  },
+  {
+    "category": "Routine",
+    "timeOfDay": "Afternoon",
+    "code": "AFT-002",
+    "name": "Nap / Quiet Time",
+    "tools": "Bed/couch, blanket",
+    "howTo": "Lie down, calming background music",
+    "wording": "Time to rest",
+    "link": "",
+    "mediaType": ""
+  },
+  {
+    "category": "Routine",
+    "timeOfDay": "Afternoon",
+    "code": "AFT-003",
+    "name": "Afternoon Snack",
+    "tools": "Small healthy snack",
+    "howTo": "Encourage self-request",
+    "wording": "I want apple",
+    "link": "",
+    "mediaType": ""
+  },
+  {
+    "category": "Routine",
+    "timeOfDay": "Afternoon",
+    "code": "AFT-004",
+    "name": "Park / Outdoor Play",
+    "tools": "Shoes, jacket if cold",
+    "howTo": "Walk, slide, swing, run",
+    "wording": "Let's go play at park",
+    "link": "",
+    "mediaType": ""
+  },
+  {
+    "category": "Routine",
+    "timeOfDay": "Evening",
+    "code": "EVE-001",
+    "name": "Evening Potty Routine",
+    "tools": "Potty chart, soap, towel",
+    "howTo": "Follow same 8 steps",
+    "wording": "Repeat potty script",
+    "link": "",
+    "mediaType": ""
+  },
+  {
+    "category": "Routine",
+    "timeOfDay": "Evening",
+    "code": "EVE-002",
+    "name": "Dinner",
+    "tools": "Plate, spoon, water cup",
+    "howTo": "Encourage self-feeding",
+    "wording": "Take bite, drink water",
+    "link": "",
+    "mediaType": ""
+  },
+  {
+    "category": "Routine",
+    "timeOfDay": "Evening",
+    "code": "EVE-003",
+    "name": "Changing into Pajamas",
+    "tools": "Prepared night clothes",
+    "howTo": "Help her wear pajamas",
+    "wording": "Pajamas on, good night clothes",
+    "link": "",
+    "mediaType": ""
+  },
+  {
+    "category": "Routine",
+    "timeOfDay": "Night",
+    "code": "NGH-001",
+    "name": "Bedtime Story",
+    "tools": "Storybook, bed",
+    "howTo": "Read short story, ask simple questions",
+    "wording": "Where is cat?",
+    "link": "",
+    "mediaType": ""
+  },
+  {
+    "category": "Routine",
+    "timeOfDay": "Night",
+    "code": "NGH-002",
+    "name": "Bedtime Routine (Good night)",
+    "tools": "Bed, blanket, lights off",
+    "howTo": "Tuck in, cuddle if she likes",
+    "wording": "Good night, sweet dreams",
+    "link": "",
+    "mediaType": ""
+  },
+  {
     "category": "BCH",
+    "timeOfDay": "Any",
     "code": "BCH-101",
     "name": "ReduceHyperactive",
-    "tooltip": "Reducing hyper activity games",
+    "tools": "Reducing hyper activity games",
+    "howTo": "",
+    "wording": "",
     "link": "https://www.youtube.com/shorts/MRyh9PS9uN0",
-    "mediaType": "Video",
-    "tags": []
+    "mediaType": "Video"
   },
   {
     "category": "SPH",
+    "timeOfDay": "Any",
     "code": "SPH-001",
     "name": "Reading",
-    "tooltip": "Reading images",
+    "tools": "Picture cards / images",
+    "howTo": "Show image and prompt child to identify objects",
+    "wording": "What do you see?",
     "link": "https://drive.google.com/file/d/1MhQkGhCf1571ikArqANfqglFI8-QR9M0/view",
-    "mediaType": "Image",
-    "tags": []
+    "mediaType": "Image"
   },
   {
     "category": "SPH",
+    "timeOfDay": "Any",
     "code": "SPH-002",
     "name": "NameThree",
-    "tooltip": "Saying items",
+    "tools": "Picture cards or objects",
+    "howTo": "Ask child to name three items shown",
+    "wording": "Tell me three things",
     "link": "https://drive.google.com/file/d/1m-24cKqaYcTxIk4oMZqYteQoR3-rEWX2/view",
-    "mediaType": "Image",
-    "tags": []
+    "mediaType": "Image"
   },
   {
     "category": "BCH",
+    "timeOfDay": "Any",
     "code": "BCH-102",
     "name": "ColorSpoonMatch",
-    "tooltip": "Sitting tolerance",
+    "tools": "Colored spoons and matching bowls",
+    "howTo": "Ask child to match spoon colors to bowls while seated",
+    "wording": "Match same colors",
     "link": "https://www.youtube.com/shorts/weuL5iYdQt8",
-    "mediaType": "Video",
-    "tags": []
+    "mediaType": "Video"
   }
 ]
