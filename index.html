@@ -4,65 +4,120 @@
   <title>Kids Activities</title>
   <style>
     body { font-family: Arial, sans-serif; padding: 20px; }
-    button { margin: 5px; padding: 8px; }
-    .activity { border: 1px solid #ccc; padding: 10px; margin: 10px 0; cursor: pointer; }
-    .activity:hover { background: #f5f5f5; }
+    input { padding: 8px; width: 300px; }
+    button { margin: 5px; padding: 8px 12px; cursor: pointer; }
+    .card {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+    .details {
+      display: none;
+      margin-top: 10px;
+      background: #f9f9f9;
+      padding: 10px;
+    }
+    .link-btn {
+      margin-top: 10px;
+      display: inline-block;
+      padding: 6px 10px;
+      background: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+    .disabled {
+      background: #aaa;
+      cursor: not-allowed;
+    }
   </style>
 </head>
 <body>
 
 <h1>Kids Activities</h1>
 
-<input id="search" type="text" placeholder="Search by name or code..." />
+<input id="search" placeholder="Search by name or code" />
 
-<div>
-  <button onclick="filterCategory('ALL')">All</button>
-  <button onclick="filterCategory('SPH')">Speech</button>
-  <button onclick="filterCategory('BCH')">Behaviour</button>
-</div>
+<h3>Routine</h3>
+<button onclick "filter('timeOfDay','Morning')">Morning</button>
+<button onclick="filter('timeOfDay','Afternoon')">Afternoon</button>
+<button onclick="filter('timeOfDay','Evening')">Evening</button>
+<button onclick="filter('timeOfDay','Night')">Before Sleep</button>
 
-<div id="activities"></div>
+<h3>Therapy</h3>
+<button onclick="filter('category','SPH')">Speech</button>
+<button onclick="filter('category','BCH')">Behaviour</button>
+<button onclick="filter('category','OT')">OT</button>
+<button onclick="filter('category','General')">General</button>
+
+<p id="welcome">Select a category or routine to view activities.</p>
+
+<div id="list"></div>
 
 <script>
-  let allActivities = [];
+let allData = [];
 
-  fetch('activities.json')
-    .then(res => res.json())
-    .then(data => {
-      allActivities = data;
-      renderActivities(data);
-    });
+fetch('activities.json')
+  .then(r => r.json())
+  .then(d => allData = d);
 
-  function renderActivities(list) {
-    const container = document.getElementById('activities');
-    container.innerHTML = '';
-    list.forEach(a => {
-      const div = document.createElement('div');
-      div.className = 'activity';
-      div.title = a.tooltip;
-      div.innerHTML = `<strong>${a.code}</strong> - ${a.name}`;
-      div.onclick = () => window.open(a.link, '_blank');
-      container.appendChild(div);
-    });
-  }
+function filter(key, value) {
+  const filtered = allData.filter(a => a[key] === value);
+  render(filtered);
+}
 
-  function filterCategory(cat) {
-    if (cat === 'ALL') {
-      renderActivities(allActivities);
+function render(items) {
+  document.getElementById('welcome').style.display = 'none';
+  const list = document.getElementById('list');
+  list.innerHTML = '';
+
+  items.forEach(a => {
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    const title = document.createElement('strong');
+    title.innerText = `${a.code} - ${a.name}`;
+    card.appendChild(title);
+
+    const details = document.createElement('div');
+    details.className = 'details';
+    details.innerHTML = `
+      <p><b>Tools:</b> ${a.tools || '-'}</p>
+      <p><b>How to do:</b> ${a.howTo || '-'}</p>
+      <p><b>Wording:</b> ${a.wording || '-'}</p>
+    `;
+
+    if (a.link) {
+      const linkBtn = document.createElement('a');
+      linkBtn.href = a.link;
+      linkBtn.target = '_blank';
+      linkBtn.className = 'link-btn';
+      linkBtn.innerText = a.mediaType === 'Video' ? 'View Video' : 'View Visual';
+      details.appendChild(linkBtn);
     } else {
-      renderActivities(allActivities.filter(a => a.category === cat));
+      const disabled = document.createElement('span');
+      disabled.className = 'link-btn disabled';
+      disabled.innerText = 'Coming soon';
+      details.appendChild(disabled);
     }
-  }
 
-  document.getElementById('search').addEventListener('input', e => {
-    const q = e.target.value.toLowerCase();
-    renderActivities(
-      allActivities.filter(a =>
-        a.name.toLowerCase().includes(q) ||
-        a.code.toLowerCase().includes(q)
-      )
-    );
+    card.onclick = () => {
+      details.style.display = details.style.display === 'none' ? 'block' : 'none';
+    };
+
+    card.appendChild(details);
+    list.appendChild(card);
   });
+}
+
+document.getElementById('search').addEventListener('input', e => {
+  const q = e.target.value.toLowerCase();
+  render(allData.filter(a =>
+    a.name.toLowerCase().includes(q) ||
+    a.code.toLowerCase().includes(q)
+  ));
+});
 </script>
 
 </body>
