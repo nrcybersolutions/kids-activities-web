@@ -3,7 +3,7 @@
 <head>
   <title>Kids Activities</title>
 
-  <!-- IMPORTANT for mobile -->
+  <!-- Mobile friendly -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
@@ -104,6 +104,7 @@
   <button type="button" onclick="filter('category','OT')">🖐 OT</button>
 </div>
 
+<!-- Results -->
 <div id="list"></div>
 
 <script>
@@ -117,7 +118,12 @@ function filter(key, value) {
   const filtered = allData.filter(a =>
     (a[key] || '').trim().toLowerCase() === value.toLowerCase()
   );
+
   render(filtered);
+
+  // 🔥 AUTO-SCROLL FIX (mobile + desktop)
+  document.getElementById('list')
+    .scrollIntoView({ behavior: 'smooth' });
 }
 
 function render(items) {
