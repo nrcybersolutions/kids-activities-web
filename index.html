@@ -2,56 +2,107 @@
 <html>
 <head>
   <title>Kids Activities</title>
+
+  <!-- IMPORTANT for mobile -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
-    body { font-family: Arial, sans-serif; padding: 20px; }
-    input { padding: 8px; width: 300px; }
-    button { margin: 5px; padding: 8px 12px; cursor: pointer; }
-    .card {
-      border: 1px solid #ccc;
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    input {
       padding: 10px;
-      margin-top: 10px;
+      width: 100%;
+      max-width: 400px;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      margin: 6px 0;
+      padding: 14px 18px;
+      font-size: 16px;
+      width: 200px;
+      border-radius: 8px;
       cursor: pointer;
     }
+
+    .section {
+      margin-top: 20px;
+    }
+
+    .card {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 12px;
+      margin-top: 12px;
+    }
+
+    .title {
+      font-weight: bold;
+      cursor: pointer;
+    }
+
     .details {
       display: none;
       margin-top: 10px;
       background: #f9f9f9;
       padding: 10px;
+      border-radius: 6px;
     }
+
     .link-btn {
-      margin-top: 10px;
       display: inline-block;
-      padding: 6px 10px;
+      margin-top: 10px;
+      padding: 8px 12px;
       background: #007bff;
       color: white;
       text-decoration: none;
-      border-radius: 4px;
+      border-radius: 6px;
+      font-size: 14px;
     }
+
     .disabled {
       background: #aaa;
       cursor: not-allowed;
     }
+
+    @media (max-width: 600px) {
+      button {
+        width: 100%;
+        font-size: 18px;
+        padding: 16px;
+      }
+    }
   </style>
 </head>
+
 <body>
 
 <h1>Kids Activities</h1>
 
 <input id="search" placeholder="Search by name or code" />
 
-<h3>Routine</h3>
-<button onclick="filter('timeOfDay','Morning')">Morning</button>
-<button onclick="filter('timeOfDay','Afternoon')">Afternoon</button>
-<button onclick="filter('timeOfDay','Evening')">Evening</button>
-<button onclick="filter('timeOfDay','Night')">Before Sleep</button>
+<p id="welcome">
+  Select a routine or category to view activities.
+</p>
 
-<h3>Therapy</h3>
-<button onclick="filter('category','SPH')">Speech</button>
-<button onclick="filter('category','BCH')">Behaviour</button>
-<button onclick="filter('category','OT')">OT</button>
-<button onclick="filter('category','General')">General</button>
+<div class="section">
+  <h3>Routine</h3>
+  <button type="button" onclick="filter('timeOfDay','Morning')">🌅 Morning</button>
+  <button type="button" onclick="filter('timeOfDay','Afternoon')">🌞 Afternoon</button>
+  <button type="button" onclick="filter('timeOfDay','Evening')">🌆 Evening</button>
+  <button type="button" onclick="filter('timeOfDay','Night')">🌙 Night</button>
+</div>
 
-<p id="welcome">Select a category or routine to view activities.</p>
+<div class="section">
+  <h3>Therapy</h3>
+  <button type="button" onclick="filter('category','SPH')">🗣 Speech</button>
+  <button type="button" onclick="filter('category','BCH')">🧠 Behaviour</button>
+  <button type="button" onclick="filter('category','OT')">🖐 OT</button>
+</div>
 
 <div id="list"></div>
 
@@ -63,7 +114,9 @@ fetch('activities.json')
   .then(d => allData = d);
 
 function filter(key, value) {
-  const filtered = allData.filter(a => a[key] === value);
+  const filtered = allData.filter(a =>
+    (a[key] || '').trim().toLowerCase() === value.toLowerCase()
+  );
   render(filtered);
 }
 
@@ -76,9 +129,9 @@ function render(items) {
     const card = document.createElement('div');
     card.className = 'card';
 
-    const title = document.createElement('strong');
+    const title = document.createElement('div');
+    title.className = 'title';
     title.innerText = `${a.code} - ${a.name}`;
-    card.appendChild(title);
 
     const details = document.createElement('div');
     details.className = 'details';
@@ -93,7 +146,8 @@ function render(items) {
       linkBtn.href = a.link;
       linkBtn.target = '_blank';
       linkBtn.className = 'link-btn';
-      linkBtn.innerText = a.mediaType === 'Video' ? 'View Video' : 'View Visual';
+      linkBtn.innerText =
+        a.mediaType === 'Video' ? '▶ View Video' : '🖼 View Visual';
       details.appendChild(linkBtn);
     } else {
       const disabled = document.createElement('span');
@@ -102,10 +156,12 @@ function render(items) {
       details.appendChild(disabled);
     }
 
-    card.onclick = () => {
-      details.style.display = details.style.display === 'none' ? 'block' : 'none';
+    title.onclick = () => {
+      details.style.display =
+        details.style.display === 'none' ? 'block' : 'none';
     };
 
+    card.appendChild(title);
     card.appendChild(details);
     list.appendChild(card);
   });
@@ -113,10 +169,12 @@ function render(items) {
 
 document.getElementById('search').addEventListener('input', e => {
   const q = e.target.value.toLowerCase();
-  render(allData.filter(a =>
-    a.name.toLowerCase().includes(q) ||
-    a.code.toLowerCase().includes(q)
-  ));
+  render(
+    allData.filter(a =>
+      a.name.toLowerCase().includes(q) ||
+      a.code.toLowerCase().includes(q)
+    )
+  );
 });
 </script>
 
